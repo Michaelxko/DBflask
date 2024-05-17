@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel information</title>
+    <style>
+        table.data {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8em; /* Smaller font size */
+        }
+        table.data th, table.data td {
+            border: 1px solid #ddd;
+            padding: 4px; /* Less padding */
+        }
+        table.data th {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            text-align: left;
+            background-color: #227925;
+            color: white;
+        }
+        .top-bar {
+            color: #ffffff;
+            font-size: 35px;
+            font-weight: bold;
+            background-color: #227925;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px; /* Add padding to the container */
+        }
+        .button {
+            background-color: #ffffff; /* White background */
+            color: #227925; /* Green text color */
+            padding: 10px 20px; /* Padding around the text */
+            text-align: center; /* Centered text */
+            text-decoration: none; /* No underline on text */
+            display: inline-block; /* Display as inline-block */
+            font-size: 18px; /* Font size */
+            margin: 4px 2px; /* Margin around the button, including right margin */
+            cursor: pointer; /* Pointer cursor on hover */
+            border: none; /* No border */
+            border-radius: 4px; /* Rounded corners */
+        }
+        .tab {
+            display: none;
+        }
+        .tab.active {
+            display: block;
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .tab-buttons button {
+            background-color: #227925;
+            color: white;
+            padding: 10px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <span>Travel Results</span>
+        <a href="/" class="button">Neue Anfrage</a>
+    </div>
+    <p><strong>Date Selected:</strong> {{ date }}</p>
+    <p><strong>Origins:</strong> {{ origins | join(', ') }}</p>
+    <p><strong>Destinations:</strong> {{ destinations | join(', ') }}</p>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        <div class="tab-buttons">
+            <button onclick="showTab('tab1')">Total</button>
+            <button onclick="showTab('tab2')">By Price</button>
+            <button onclick="showTab('tab3')">By Abfahrt</button>
+            <button onclick="showTab('tab4')">By Ankunft</button>
+        </div>
+        <div id="tab1" class="tab active">
+            {{ tables[0]|safe }}
+        </div>
+        <div id="tab2" class="tab">
+            {{ tables[1]|safe }}
+        </div>
+        <div id="tab3" class="tab">
+            {{ tables[2]|safe }}
+        </div>
+        <div id="tab4" class="tab">
+            {{ tables[3]|safe }}
+        </div>
+    {% endif %}
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

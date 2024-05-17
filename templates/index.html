@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light grey background for contrast */
+            color: #227925; /* Green text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #227925; /* Green text color */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #ffffff; /* White background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            font-weight: bold;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"], select {
+            width: 85%; /* Adjusted width */
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        button {
+            background-color: #227925; /* Green background */
+            color: white; /* White text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px; /* Add margin for spacing */
+        }
+        button:hover {
+            background-color: #1a5a19; /* Darker green on hover */
+        }
+        .destinations-label {
+            margin-top: 10px; /* Add space between Origins and Destinations */
+        }
+    </style>
+</head>
+<body>
+    <form action="/submit" method="POST">
+        <h1>Travel Information</h1>
+        <label for="traveler">Abfahrt:</label>
+        <select name="traveler" id="traveler">
+            <option value="michael">Darmstadt</option>
+            <option value="shira">Solingen</option>
+        </select>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+
+        <label for="departure">Departure Time:</label>
+        <input type="text" id="departure" name="departure" placeholder="Departure Time">
+
+        <label for="arrival">Arrival Time:</label>
+        <input type="text" id="arrival" name="arrival" placeholder="Arrival Time">
+
+        <label>Origins:</label>
+        <input type="checkbox" name="origins" value="Darmstadt Hbf"> Darmstadt Hbf<br>
+        <input type="checkbox" name="origins" value="FRA Frankfurt Airport"> FRA Frankfurt Airport<br>
+        <input type="checkbox" name="origins" value="Mainz Hbf"> Mainz Hbf<br>
+        <input type="checkbox" name="origins" value="Frankfurt(Main)Hbf"> Frankfurt(Main)Hbf<br>
+
+        <label class="destinations-label">Destinations:</label>
+        <input type="checkbox" name="destinations" value="Solingen Hbf"> Solingen Hbf<br>
+        <input type="checkbox" name="destinations" value="Köln Hbf"> Köln Hbf<br>
+        <input type="checkbox" name="destinations" value="Köln Messe/Deutz"> Köln Messe/Deutz<br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
